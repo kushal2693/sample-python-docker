@@ -7,4 +7,5 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: ubuntu:latest
-    run: sh main.sh
+    steps:
+      - run: sh main.sh
