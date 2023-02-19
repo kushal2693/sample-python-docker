@@ -8,4 +8,4 @@ jobs:
     container:
       image: ubuntu:latest
     steps:
-      - run: ls; sh main.sh
+      - run: pwd
