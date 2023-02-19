@@ -1,0 +1,9 @@
+name: Checkout Workspace
+
+on: [push, pull_request]
+
+jobs:
+  checkout-workspace:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
