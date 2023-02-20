@@ -5,7 +5,18 @@ on: [push, pull_request]
 jobs:
   checkout-workspace:
     runs-on: ubuntu-latest
+    container:
+      image: ubunut:latest
     steps:
-      - uses: actions/checkout@v3
-      - run: | 
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: run shell 
+        run: | 
           sh main.sh
+      - name: Dockerize
+        run: |
+          docker build -t sample:latest .
+      - name: Docker run
+        run: |
+          docker run sample:latest
+      
