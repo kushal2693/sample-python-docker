@@ -6,7 +6,7 @@ jobs:
   checkout-workspace:
     runs-on: ubuntu-latest
     container:
-      image: ubuntu:latest
+      image: python
     steps:
       - name: checkout
         uses: actions/checkout@v3
