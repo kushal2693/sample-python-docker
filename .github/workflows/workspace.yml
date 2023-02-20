@@ -31,6 +31,12 @@ jobs:
     - name: Dockerize
       run: |
         docker build -t sample:latest .
+    - name: Docker login
+      env:
+        username: ${{ secrets.USER }}
+        token: ${{ secrets.PASSWORD}}
+      run: |
+        docker login -u username -p token
     - name: Docker run
       run: |
         docker run sample:latest
