@@ -1,3 +1,3 @@
 #!/bin/bash
 
-python main.py "Hello!"
+python main.py $1
