@@ -5,21 +5,33 @@ on: [push, pull_request]
 jobs:
   checkout-workspace:
     runs-on: ubuntu-latest
-
     container:
       image: python
     steps:
       - name: checkout
         uses: actions/checkout@v3
+      - name: artifact upload
+        uses: actions/upload-artifact@v3
+        with:
+          name: repo
+          path: ${{ github.workspace }}
       - name: run shell 
         env:
           msg: ${{ vars.MSG }}
         run: | 
           sh main.sh msg
-      - name: Dockerize
-        run: |
-          docker build -t sample:latest .
-      - name: Docker run
-        run: |
-          docker run sample:latest
+  dockerize-op:
+    runs-on: ubuntu-latest
+    needs: checkout-workspace
+    steps:
+    - name: artifact upload
+      uses: actions/download-artifact@v3
+      with:
+        name: repo
+    - name: Dockerize
+      run: |
+        docker build -t sample:latest .
+    - name: Docker run
+      run: |
+        docker run sample:latest
       
